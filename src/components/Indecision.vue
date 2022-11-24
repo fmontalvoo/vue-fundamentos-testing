@@ -4,9 +4,9 @@
     <div class="indecision-container">
         <input type="text" placeholder="Hazme una pregunta" v-model="question">
         <p>Recuerda terminar con un signo de interrogaci&oacute;n (?)</p>
-        <div>
-            <h2 v-if="question">{{ question }}?</h2>
-            <h1 v-if="answer">{{ answer }}</h1>
+        <div v-if="validQuestion">
+            <h2>{{ question }}</h2>
+            <h1>{{ showAnswer }}</h1>
         </div>
     </div>
 </template>
@@ -15,13 +15,15 @@
 export default {
     data() {
         return {
-            question: '',
-            answer: '',
             image: '',
+            answer: '',
+            question: '',
+            validQuestion: false,
         }
     },
     methods: {
         async getAnswer() {
+            this.validQuestion = true
             this.answer = '...'
             const { answer, image } = await fetch('https://yesno.wtf/api').then(res => res.json())
             this.image = image
@@ -30,10 +32,24 @@ export default {
     },
     watch: {
         question(newValue, oldValue) {
+            this.validQuestion = false
+
             if (!newValue.endsWith('?'))
                 return
 
             this.getAnswer()
+        }
+    },
+    computed: {
+        showAnswer() {
+            switch (this.answer) {
+                case 'yes':
+                    return 'Si'
+                case 'no':
+                    return 'No'
+                case 'maybe':
+                    return 'Quizás'
+            }
         }
     }
 }
