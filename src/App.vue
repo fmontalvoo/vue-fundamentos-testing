@@ -1,9 +1,9 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <Counter />
-  <Counter :count="10" />
-  <Counter :count="100" />
-  <Counter :count="1000" />
+  <Counter :count="10" :exp="3" />
+  <Counter :count="100" :exp="4" />
+  <Counter :count="1000" :exp="5" />
 </template>
 
 <script>

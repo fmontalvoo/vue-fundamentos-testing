@@ -1,5 +1,5 @@
 <template>
-    <h2>Counter: {{ counter }}<sup>2</sup> = {{ exp }}</h2>
+    <h2>Counter: {{ counter }}<sup>{{ exp }}</sup> = {{ calcSquare }}</h2>
     <div>
         <button class="minus" @click="substract">-</button>
         <button class="plus" v-on:click="add">+</button>
@@ -16,6 +16,9 @@ export default {
     props: {
         count: {
             default: 1
+        },
+        exp: {
+            default: 2
         }
     },
     methods: {
@@ -24,11 +27,15 @@ export default {
         },
         substract() {
             this.counter -= 1
+        },
+        square(b, e) {
+            if (e <= 1) return b
+            return b * this.square(b, e - 1)
         }
     },
     computed: {
-        exp() {
-            return this.counter * this.counter
+        calcSquare() {
+            return this.square(this.counter, this.exp)
         }
     }
 }
