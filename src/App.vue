@@ -1,9 +1,9 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
   <Counter />
-  <Counter :count="10" :exp="3" />
-  <Counter :count="100" :exp="4" />
-  <Counter :count="1000" :exp="5" />
+  <Counter :start="10" :exp="3" />
+  <!-- <Counter v-bind:start="100" v-bind:exp="4" /> -->
+  <!-- <Counter v-bind:start="1000" v-bind:exp="5" /> -->
 </template>
 
 <script>

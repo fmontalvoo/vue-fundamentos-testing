@@ -10,15 +10,17 @@
 export default {
     data() {
         return {
-            counter: this.count,
+            counter: this.start,
         }
     },
     props: {
-        count: {
-            default: 1
+        start: {
+            default: 1,
+            type: Number,
         },
         exp: {
-            default: 2
+            default: 2,
+            type: Number,
         }
     },
     methods: {
@@ -28,7 +30,7 @@ export default {
         substract() {
             this.counter -= 1
         },
-        square(b, e) {
+        square(b = 0, e = 1) {
             if (e <= 1) return b
             return b * this.square(b, e - 1)
         }
