@@ -21,6 +21,9 @@ export default {
         exp: {
             default: 2,
             type: Number,
+            validator(value) {
+                return (value >= 1)
+            }
         }
     },
     methods: {
