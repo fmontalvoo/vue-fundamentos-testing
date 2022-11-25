@@ -20,4 +20,11 @@ fdescribe('Indecision.vue', () => {
     test('Debe hacer match con el snapshot', () => {
         expect(wrapper.html()).toMatchSnapshot();
     });
+
+    test('No debe llamar al api mientras no este el simbolo de pregunta "?"', async () => {
+        const input = wrapper.find('input');
+        await input.setValue('Hola');
+
+        expect(consoleSpy).toHaveBeenCalledTimes(1);
+    });
 });
