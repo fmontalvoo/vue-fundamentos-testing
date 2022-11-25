@@ -22,9 +22,12 @@ fdescribe('Indecision.vue', () => {
     });
 
     test('No debe llamar al api mientras no este el simbolo de pregunta "?"', async () => {
+        const getAnswerSpy = jest.spyOn(wrapper.vm, 'getAnswer');
+
         const input = wrapper.find('input');
         await input.setValue('Hola');
 
         expect(consoleSpy).toHaveBeenCalledTimes(1);
+        expect(getAnswerSpy).not.toHaveBeenCalled();
     });
 });
