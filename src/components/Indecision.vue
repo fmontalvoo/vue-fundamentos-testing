@@ -34,6 +34,8 @@ export default {
         question(newValue, oldValue) {
             this.validQuestion = false
 
+            console.info(newValue, oldValue)
+
             if (!newValue.endsWith('?'))
                 return
 
