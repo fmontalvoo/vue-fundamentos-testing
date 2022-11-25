@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { removeTypeDuplicates } from '@babel/types'
+
 export default {
     data() {
         return {
@@ -23,11 +25,16 @@ export default {
     },
     methods: {
         async getAnswer() {
-            this.validQuestion = true
-            this.answer = '...'
-            const { answer, image } = await fetch('https://yesno.wtf/api').then(res => res.json())
-            this.image = image
-            this.answer = answer
+            try {
+                this.validQuestion = true
+                this.answer = '...'
+                const { answer, image } = await fetch('https://yesno.wtf/api').then(res => res.json())
+                this.image = image
+                this.answer = answer
+            } catch (error) {
+                this.answer = 'Error al conectar con la API'
+                // throw error
+            }
         }
     },
     watch: {

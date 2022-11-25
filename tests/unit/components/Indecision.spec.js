@@ -64,4 +64,15 @@ fdescribe('Indecision.vue', () => {
         expect(h2.text()).toEqual(wrapper.vm.question);
         expect(h1.text()).toEqual(wrapper.vm.showAnswer);
     });
+
+    test('Se debe mostrar un mensaje de error cuando falla la peticion al API', async () => {
+        fetch.mockImplementationOnce(() => Promise.reject('Error 500'));
+
+        await wrapper.vm.getAnswer();
+
+        const img = wrapper.find('img');
+        expect(img.exists()).toBeFalsy();
+
+        expect(wrapper.vm.answer).toBe('Error al conectar con la API');
+    });
 });
