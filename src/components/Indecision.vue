@@ -5,8 +5,8 @@
         <input type="text" placeholder="Hazme una pregunta" v-model="question">
         <p>Recuerda terminar con un signo de interrogaci&oacute;n (?)</p>
         <div v-if="validQuestion">
-            <h2>{{ question }}</h2>
-            <h1>{{ showAnswer }}</h1>
+            <h2 data-testid="question">{{ question }}</h2>
+            <h1 data-testid="answer">{{ showAnswer }}</h1>
         </div>
     </div>
 </template>
