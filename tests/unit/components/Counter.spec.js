@@ -37,4 +37,20 @@ describe('Counter.vue', () => {
         expect(component.vm.counter).toEqual(2);
         expect(h2.text()).toContain('4');
     });
+
+    test('El contador debe incrementar y decrementar al hacer click en los botones', async () => {
+        const h2 = component.find('h2');
+        const [btnMinus, btnPlus] = component.findAll('button');
+
+        await btnPlus.trigger('click');
+        await btnPlus.trigger('click');
+
+        expect(component.vm.counter).toEqual(3);
+        expect(h2.text()).toContain('3');
+
+        await btnMinus.trigger('click');
+
+        expect(component.vm.counter).toEqual(2);
+        expect(h2.text()).toContain('2');
+    });
 });
